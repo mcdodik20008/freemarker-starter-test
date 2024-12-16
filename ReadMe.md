@@ -35,28 +35,28 @@ mcdodik.freemakerstarter.FreemakerStarterApplication
 Теперь нам нужно как-то задекларировать бины. Как по мне самый простой способ - через @Configuration класс
 
 ```java
-@Configuration
-@AutoConfigureAfter(FreeMarkerAutoConfiguration.class)
+@org.springframework.context.annotation.Configuration
 public class FreeMarkerAutoConfiguration {
 
     @Bean
-    @ConditionalOnMissingBean(FreeMarkerConfigurationFactoryBean.class)
-    public FreeMarkerConfigurationFactoryBean freemarkerConfigurationFactoryBean() {
-        FreeMarkerConfigurationFactoryBean factoryBean = new FreeMarkerConfigurationFactoryBean();
-        factoryBean.setTemplateLoaderPath("classpath:/templates/");
-        return factoryBean;
-    }
-
-    @Bean
     @ConditionalOnMissingBean(freemarker.template.Configuration.class)
-    public freemarker.template.Configuration freemarkerConfig(FreeMarkerConfigurationFactoryBean factoryBean) {
-        return factoryBean.getObject();
+    public Configuration freemarkerConfig() {
+        Configuration configuration = new Configuration(Configuration.VERSION_2_3_33);
+
+        try {
+            configuration.setDirectoryForTemplateLoading(new java.io.File("classpath:/templates/"));
+            configuration.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+            configuration.setWhitespaceStripping(true);
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
+        return configuration;
     }
+    
 }
 ```
 Здесь:
 * @ConditionalOnMissingBean гарантирует, что бины будут созданы только если они еще не зарегистрированы в контексте.
-* templateLoaderPath указывает на папку, где находятся шаблоны.
 
 В интернете можно прочитать какие кондишаны есть и как ими пользоваться.
 

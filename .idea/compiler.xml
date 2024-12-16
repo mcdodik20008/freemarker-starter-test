@@ -23,7 +23,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="freemaker-lib" options="" />
+      <module name="freemaker-lib" options="-parameters" />
       <module name="freemaker-starter" options="-parameters" />
       <module name="mainwebapp" options="-parameters" />
     </option>

@@ -1,17 +1,14 @@
 package mcdodik.mainwebapp.controller;
 
+import freemarker.template.Configuration;
+import freemarker.template.Template;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import freemarker.template.Configuration;
-import freemarker.template.Template;
 
 import java.util.HashMap;
 import java.util.List;

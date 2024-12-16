@@ -17,7 +17,6 @@ mcdodik.freemakerstarter.FreemakerStarterApplication
 Укажем зависимости в помнике стартера
 ```xml
 <dependencies>
-    <!-- Spring Boot Starter -->
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter</artifactId>
@@ -55,8 +54,7 @@ public class FreeMarkerAutoConfiguration {
     
 }
 ```
-Здесь:
-* @ConditionalOnMissingBean гарантирует, что бины будут созданы только если они еще не зарегистрированы в контексте.
+`@ConditionalOnMissingBean` гарантирует, что бины будут созданы только если они еще не зарегистрированы в контексте.
 
 В интернете можно прочитать какие кондишаны есть и как ими пользоваться.
 
@@ -65,9 +63,6 @@ public class FreeMarkerAutoConfiguration {
 
 Нужно выполнить mvn install для двух пакетов (lib, starter) для того, 
 что бы `mainvebapp` смог взять jar стартера и библиотека из локального репозитория.
-
-Может быть в конкретно этом случаем инсталировать не обязательно, но если мы хотим юзать 
-конкретно не понятно где лежащий проект/стартер, то инсталировать его обязательно.
 
 В основном приложении подключаем стартер и радуемся жизни.
 ```xml
